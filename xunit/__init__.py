@@ -1,3 +1,7 @@
 from .testcase import TestCase
+from .testresult import TestResult
+from .testsuite import TestSuite
+from .testloader import TestLoader
+from .testrunner import TestRunner
 
-__all__ = ["TestCase"]
+__all__ = ["TestCase", "TestResult", "TestSuite", "TestLoader", "TestRunner"]
