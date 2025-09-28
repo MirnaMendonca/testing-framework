@@ -1,22 +1,24 @@
 from xunit import TestCase
+from xunit.testresult import TestResult
 
 class MyTest(TestCase):
     def set_up(self):
-        print("set_up")
+        self.x = 1
 
     def tear_down(self):
-        print("tear_down")
+        pass
 
-    def test_a(self):
-        print("test_a")
+    def test_pass(self):
+        assert self.x == 1
 
-    def test_b(self):
-        print("test_b")
+    def test_fail(self):
+        assert self.x == 2
 
-    def test_c(self):
-        print("test_c")
+    def test_error(self):
+        1 / 0
 
 if __name__ == "__main__":
-    for name in ("test_a", "test_b", "test_c"):
-        print(f"\n>>> Executando {name}")
-        MyTest(name).run()
+    result = TestResult()
+    for name in ("test_pass", "test_fail", "test_error"):
+        MyTest(name).run(result)
+    print(result.summary())
